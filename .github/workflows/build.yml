@@ -39,7 +39,7 @@ jobs:
       - name: Keyboard Name
         shell: bash
         run: |
-          BN=$(echo ${{ github.ref_name }} | egrep -o '^.{25}')
+          BN=$(echo ${{ github.ref_name }} | cut -d'.' -f-25)
           KB=$(echo $BN | cut -c 10-25)
           if [[ ! $BN =~ V[0-9]\.[0-9]+ ]]; then sed -i "0,/\s*default/{s/\(\s*default\s\)\(.*\)/\1\"$KB\"/}" config/boards/arm/adv360/Kconfig.defconfig; fi
           head config/boards/arm/adv360/Kconfig.defconfig
