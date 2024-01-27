@@ -41,7 +41,7 @@ jobs:
         run: |
           BN=$(echo ${{ github.ref_name }} | cut -d'.' -f-25)
           KB=$(echo $BN | cut -c 10-25)
-          if [[ ! $BN =~ ^KEYBOARD\_.* ]]; then sed -i "0,/\s*default/{s/\(\s*default\s\)\(.*\)/\1\"$KB\"/}" config/boards/arm/adv360/Kconfig.defconfig; fi
+          if [[ $BN =~ ^KEYBOARD\_.* ]]; then sed -i "0,/\s*default/{s/\(\s*default\s\)\(.*\)/\1\"$KB\"/}" config/boards/arm/adv360/Kconfig.defconfig; fi
           head config/boards/arm/adv360/Kconfig.defconfig
       - name: West Init
         run: west init -l config
