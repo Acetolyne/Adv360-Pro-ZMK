@@ -38,7 +38,7 @@ jobs:
             ${{ runner.os }}-
       - name: Keyboard Name
         run: |
-          KB=${{ github.ref_name }}
+          bash KB=${{ github.ref_name }} &&
           if [[ ! $KB =~ V[0-9]\.[0-9]+ ]]; then sed -i "0,/\s*default/{s/\(\s*default\s\)\(.*\)/\1\"$KB\"/}" config/boards/arm/adv360/Kconfig.defconfig; fi
           head config/boards/arm/adv360/Kconfig.defconfig
       - name: West Init
